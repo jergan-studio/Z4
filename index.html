@@ -1,8 +1,13 @@
-<html lang="en"><head></head><body>```html
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Z4 - Buy &amp; Sell Domains</title>
+    <title>Z4 - Buy & Sell Domains</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jergan-studio/Z4/main/Z4.png">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,7 +47,6 @@
             text-align: center;
         }
 
-        /* Intro Section Styles */
         .intro {
             margin-bottom: 2rem;
             padding: 1rem;
@@ -88,10 +92,6 @@
             text-align: left;
         }
 
-        .domain-results h2 {
-            margin-bottom: 1rem;
-        }
-
         .domain-results ul {
             list-style: none;
             padding: 0;
@@ -106,11 +106,11 @@
             border-bottom: none;
         }
 
-        .domain-results .domain-name {
+        .domain-name {
             font-weight: bold;
         }
 
-        .domain-results .domain-price {
+        .domain-price {
             float: right;
             color: #007bff;
         }
@@ -131,7 +131,6 @@
             margin-bottom: 10px;
         }
 
-        /* Styles for sell domain section */
         .domain-sell {
             margin-top: 2rem;
         }
@@ -156,35 +155,35 @@
             background-color: #218838;
         }
 
-        /* Style for the "Why Can't I Sell" section */
         .why-cant-sell {
             margin-top: 2rem;
             background-color: #fff;
             padding: 1rem;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: left; /* Align text to the left within the section */
+            text-align: left;
         }
 
         .why-cant-sell h2 {
-            color: #dc3545; /* Red color for the heading */
+            color: #dc3545;
             margin-bottom: 1rem;
             text-align: center;
         }
 
         .why-cant-sell ul {
-            list-style-type: disc; /* Use bullet points for the list */
-            padding-left: 2rem; /* Indent the list items */
+            list-style-type: disc;
+            padding-left: 2rem;
         }
 
         .why-cant-sell li {
-            margin-bottom: 0.5rem; /* Add some spacing between list items */
+            margin-bottom: 0.5rem;
         }
     </style>
-
+</head>
+<body>
 
     <header>
-        <h1>Z4 - Buy &amp; Sell Domains</h1>
+        <h1>Z4 - Buy & Sell Domains</h1>
     </header>
 
     <nav>
@@ -194,11 +193,12 @@
     </nav>
 
     <main>
+
         <section class="intro">
             <h2>Welcome to Z4 Domains!</h2>
-            <p>Find the perfect domain name for your next project or business venture. Buy and sell domains with ease
-                using Z4lings, our unique currency. Start your domain journey today!</p>
+            <p>Find the perfect domain name for your next project or business. Buy and sell domains using Z4lings, our unique currency!</p>
         </section>
+
         <section>
             <h2 id="currency">Z4lings: <span id="z4lings">135.00</span></h2>
             <p>To buy something, you need Z4lings.</p>
@@ -244,15 +244,16 @@
         <section class="why-cant-sell">
             <h2>Why Can't I Sell My Domain?</h2>
             <ul>
-                <li><b>Domain Name Quality:</b> Short, memorable, and brandable domains are easier to sell.</li>
-                <li><b>Domain Extension:</b> .com domains are generally more valuable than other extensions.</li>
-                <li><b>Domain Age:</b> Older domains can sometimes have an advantage.</li>
-                <li><b>Market Demand:</b> The domain should be relevant and in demand.</li>
-                <li><b>Pricing:</b> Overpriced domains are hard to sell. Research comparable sales.</li>
-                <li><b>Lack of Marketing:</b> Promote your domain on relevant platforms.</li>
-                <li><b>Registrar Issues:</b> Ensure your domain is transferable and has no restrictions.</li>
+                <li><b>Domain Name Quality:</b> Short, memorable domains are easier to sell.</li>
+                <li><b>Domain Extension:</b> .com domains are generally more valuable.</li>
+                <li><b>Domain Age:</b> Older domains may have more value.</li>
+                <li><b>Market Demand:</b> The domain must be wanted by buyers.</li>
+                <li><b>Pricing:</b> Overpriced domains won't sell.</li>
+                <li><b>Lack of Marketing:</b> Promote it on domain marketplaces.</li>
+                <li><b>Registrar Issues:</b> Make sure it's transferable.</li>
             </ul>
         </section>
+
     </main>
 
     <footer>
@@ -261,26 +262,25 @@
 
     <script>
         let z4lings = parseFloat(document.getElementById('z4lings').innerText);
-        // Retrieve z4lings from local storage on page load
+
         if (localStorage.getItem('z4lings')) {
             z4lings = parseFloat(localStorage.getItem('z4lings'));
         } else {
-            z4lings = 100; // Initial Z4lings amount
+            z4lings = 100;
         }
+
         updateZ4lings();
 
         function updateZ4lings() {
             document.getElementById('z4lings').innerText = z4lings.toFixed(2);
-            // Save z4lings to local storage
             localStorage.setItem('z4lings', z4lings.toFixed(2));
         }
 
         function searchDomain() {
             const domainName = document.getElementById('domain-name').value;
             const domainList = document.getElementById('domain-list');
-            domainList.innerHTML = ''; // Clear previous results
+            domainList.innerHTML = '';
 
-            // Simulate domain search and availability (replace with actual API call)
             const availableDomains = [
                 { name: domainName + ".com", price: "9.99", available: Math.random() < 0.8 },
                 { name: domainName + ".net", price: "7.99", available: Math.random() < 0.6 },
@@ -289,22 +289,22 @@
             ];
 
             availableDomains.forEach(domain => {
+                const listItem = document.createElement('li');
+
                 if (domain.available) {
-                    const listItem = document.createElement('li');
                     listItem.innerHTML = `
                         <span class="domain-name">${domain.name}</span>
                         <span class="domain-price">$${domain.price}</span>
                         <button onclick="buyDomain('${domain.name}', '${domain.price}')">Buy</button>
                     `;
-                    domainList.appendChild(listItem);
                 } else {
-                    const listItem = document.createElement('li');
                     listItem.innerHTML = `
                         <span class="domain-name">${domain.name}</span>
                         <span class="domain-price">Unavailable</span>
                     `;
-                    domainList.appendChild(listItem);
                 }
+
+                domainList.appendChild(listItem);
             });
         }
 
@@ -322,7 +322,7 @@
         function sellDomain() {
             const domainName = document.getElementById('domain-to-sell').value;
             if (domainName) {
-                const sellingPrice = Math.floor(Math.random() * 50) + 10; // Random price between 10 and 60
+                const sellingPrice = Math.floor(Math.random() * 50) + 10;
                 z4lings += sellingPrice;
                 updateZ4lings();
                 alert(`You sold ${domainName} for ${sellingPrice} Z4lings!`);
@@ -332,6 +332,5 @@
         }
     </script>
 
-
-
-```</body></html>
+</body>
+</html>
